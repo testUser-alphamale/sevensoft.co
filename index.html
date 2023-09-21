@@ -811,7 +811,7 @@
 
           </div>
 
-          <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch">
+                    <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch">
             <form action="#" method="post" role="form" class="email-form">
               <div class="row">
                 <div class="form-group col-md-6">
@@ -829,17 +829,49 @@
               </div>
               <div class="form-group">
                 <label for="name">Message</label>
-                <textarea class="form-control" name="message" rows="10" required></textarea>
+                <input class="form-control" name="message" id="message" rows="10" required></input>
               </div>
               <div class="my-3">
                 <div class="loading">Loading</div>
                 <div class="error-message"></div>
                 <div class="sent-message">Your message has been sent. Thank you!</div>
               </div>
-              <div class="text-center"><button type="submit">Send Message</button></div>
+              <div class="text-center"><button type="submit" id="btn">Send Message</button></div>
             </form>
+          
+            <script>
+            
+            var btn = document.getElementById('btn');
+            btn.addEventListener('click',function(e){
+                e.preventDefault()
+                // console.log('Hi');
+              var name = document.getElementById('name').value;
+                var email = document.getElementById('email').value;
+                var subject = document.getElementById('subject').value;
+                var message = document.getElementById('message').value;
+                var body = 'name : ' + name + '<br/> Email : ' + email + '<br/>Massege : ' +message; 
+            
+                    Email.send({
+                    // SecureToken : "b76dd498-9b4c-4f73-b97c-57ace3699ab8",
+                    Host : "smtp.elasticemail.com",
+                  Username : "emma1995benjamin@gmail.com",
+                   Password : "5D0D291B78428D754392955535D72137A412",
+                    To : 'emma1995benjamin@gmail.com',
+                    From : "emma1995benjamin@gmail.com",
+                    Subject : subject,
+                    Body : body
+                }).then(
+                  message => alert(message)
+                )
+                .catch(
+                  error=> console.error(error)
+                );
+
+            })
+            </script>
           </div>
 
+        </div>
         </div>
 
       </div>
